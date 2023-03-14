@@ -1,5 +1,6 @@
 (ns com.example.server.main
   (:require [cognitect.transit :as transit]
+            [com.example.server.db :as db]
             [com.example.server.pathom :as pathom]
             [com.fulcrologic.fulcro.server.api-middleware :as server]
             [org.httpkit.server :refer [run-server]]
@@ -44,6 +45,8 @@
       wrap-route-to-index)))
 
 ;; NOTE It is enough to reload the pathom and this ns to get any Pathom changes live
-(defn start [] (run-server #'handler {:port 8008}))
+(defn start [] 
+  (db/init-db)
+  (run-server #'handler {:port 8008}))
 
 (defonce stop-fn (atom (start)))

@@ -1,4 +1,15 @@
-# minimalist-fulcro-template
+# minimalist-fulcro-template-fly
+
+This is a clone on [minimalist-fulcro-template](https://github.com/holyjak/minimalist-fulcro-template) extended with PostgreSQL and deploy to Fly.io.
+
+Key differences:
+
+1. You need to run `docker compose up` in this folder to start PostgreSQL
+2. Evaluating `com.example.server.main` will not only start the server but
+   also apply DB migrations from `resources/db-init.sql`
+3. Pathom resolvers can use `(:conn env)` with `next.jdbc/execute!` to run queries
+
+# Original minimalist-fulcro-template instructions
 
 A template for starting a new, minimalistic, full-stack Fulcro application. Intended for playing with and learning Fulcro, not for production apps, and therefore simpler than the official [fulcro-template](https://github.com/fulcrologic/fulcro-template). It is a good starting point for your learning projects that is hopefully simple enough for you to understand.
 
