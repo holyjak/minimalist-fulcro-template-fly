@@ -8,6 +8,8 @@ Key differences:
 2. Evaluating `com.example.server.main` will not only start the server but
    also apply DB migrations from `resources/db-init.sql`
 3. Pathom resolvers can use `(:conn env)` with `next.jdbc/execute!` to run queries
+4. You must manually call `(start)` in the main ns to start the server
+
 
 # Original minimalist-fulcro-template instructions
 

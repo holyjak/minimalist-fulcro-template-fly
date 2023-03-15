@@ -4,7 +4,8 @@
             [com.example.server.pathom :as pathom]
             [com.fulcrologic.fulcro.server.api-middleware :as server]
             [org.httpkit.server :refer [run-server]]
-            [ring.middleware.defaults :refer [wrap-defaults]]))
+            [ring.middleware.defaults :refer [wrap-defaults]])
+  (:gen-class))
 
 (defn wrap-api [handler uri]
   (fn [request]
@@ -45,8 +46,14 @@
       wrap-route-to-index)))
 
 ;; NOTE It is enough to reload the pathom and this ns to get any Pathom changes live
-(defn start [] 
+(defn start-all [] 
   (db/init-db)
   (run-server #'handler {:port 8008}))
 
-(defonce stop-fn (atom (start)))
+(defonce stop-fn (atom nil))
+
+(defn start []
+  (reset! stop-fn (start-all)))
+
+(defn -main [& args]
+  (start))

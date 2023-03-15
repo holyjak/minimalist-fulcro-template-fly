@@ -21,4 +21,10 @@
    {thheller/shadow-cljs {:mvn/version "2.22.2"},
     binaryage/devtools {:mvn/version "1.0.6"},
     cider/cider-nrepl {:mvn/version "0.28.5"},
-    cider/piggieback {:mvn/version "0.5.3"}}}}}
+    cider/piggieback {:mvn/version "0.5.3"}}}
+  :shadow-cljs {;; so that we can run shadow from Clojure, without Node
+                :extra-deps {thheller/shadow-cljs {:mvn/version "2.22.2"}}
+                :main-opts  ["-m" "shadow.cljs.devtools.cli"]}
+  :build       {;; so that we can build an uberjar
+                :deps       {io.github.clojure/tools.build {:git/tag "v0.9.4" :git/sha "76b78fe"}}
+                :ns-default build}}}
