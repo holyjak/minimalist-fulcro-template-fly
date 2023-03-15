@@ -10,6 +10,27 @@ Key differences:
 3. Pathom resolvers can use `(:conn env)` with `next.jdbc/execute!` to run queries
 4. You must manually call `(start)` in the main ns to start the server
 
+## Operation
+
+### Local
+
+#### Run via docker
+
+```shell
+docker compose up        # start Postgres
+docker build -t ex-fly . # build the image
+# Run the image, pointing to Postgres running on the host:
+docker run --rm -it -p 9999:8008 \
+  -e DATABASE_URL="jdbc:postgresql://postgres:FulcroRulez@host.docker.internal:5432/postgres"  \
+  ex-fly:latest
+```
+
+### Fly
+
+#### Fly setup
+
+1. `fly apps create` and choose app name, e.g. _mft-fly_
+2. `fly postgres  create` and choose app name, e.g. _mft-fly-db_
 
 # Original minimalist-fulcro-template instructions
 

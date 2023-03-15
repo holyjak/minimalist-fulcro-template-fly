@@ -1,0 +1,10 @@
+# Only send to Docker the files/dirs it must have (faster)
+**/*.*
+!*.clj
+!guardrails.edn
+!shadow-cljs.edn
+!deps.edn
+!resources
+!src
+!package.json
+!yarn.lock

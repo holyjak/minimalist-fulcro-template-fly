@@ -16,3 +16,4 @@ resources/public/js/
 node_modules
 .portal/
 .lsp/.cache/
+.m2
