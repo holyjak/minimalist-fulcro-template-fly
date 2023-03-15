@@ -36,6 +36,7 @@ docker run --rm -it -p 9999:8008 \
 4. Deploy: `fly deploy`
 5. Access your deployed app under its name, here: https://mft-fly.fly.dev/
 6. For Calva, the server is started automatically during jack-in
+7. Factor out `resolvers` ns & make it so that you only need to load `pathom` ns to get resolver changes in
 
 # Original minimalist-fulcro-template instructions
 

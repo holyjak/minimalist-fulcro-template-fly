@@ -3,33 +3,15 @@
 
    Add your resolvers and 'server-side' mutations here."
   (:require [com.example.server.db :as db]
-            [com.example.server.db-queries :as db-queries]
+            [com.example.server.resolvers :as resolvers]
             [com.wsscode.pathom3.connect.indexes :as pci]
-            [com.wsscode.pathom3.connect.operation :as pco]
             [com.wsscode.pathom3.connect.runner :as pcr]
             [com.wsscode.pathom3.interface.async.eql :as p.a.eql]
-            [edn-query-language.core :as eql]))
+            [edn-query-language.core :as eql]
+            ;; reload so changes in resolvers are picked up:
+            :reload))
 
-(pco/defresolver i-count
-  [{:keys [conn] :as _env} _]
-  {::pco/input  []
-   ::pco/output [:i-count]}
-  {:i-count (db-queries/my-test-count conn)})
-
-(pco/defmutation create-random-thing [env {:keys [tmpid] :as params}]
-  ;; Fake generating a new server-side entity with
-  ;; a server-decided actual ID
-  ;; NOTE: To match with the Fulcro-sent mutation, we
-  ;; need to explicitly name it to use the same symbol
-  {::pco/op-name 'com.example.client.mutations/create-random-thing
-   ;::pco/params [:tempid]
-   ::pco/output [:tempids]}
-  (println "SERVER: Simulate creating a new thing with real DB id 123" tmpid)
-  {:tempids {tmpid 123}})
-
-(def my-resolvers-and-mutations
-  "Add any resolvers you make to this list (and reload to re-create the parser)"
-  [#_index-explorer create-random-thing i-count])
+(def my-resolvers-and-mutations resolvers/resolvers)
 
 (def default-env
   (-> {:com.wsscode.pathom3.error/lenient-mode? true}
