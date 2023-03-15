@@ -1,0 +1,15 @@
+{
+    "calva.replConnectSequences": [
+        {
+            "name": "Fulcro",
+            "autoSelectForJackIn": true,
+            "projectType": "shadow-cljs",
+            "cljsType": "shadow-cljs",
+            "afterCLJReplJackInCode": "(do ((requiring-resolve 'com.example.server.main/start)) (println \"Welcome!\"))",
+            "menuSelections": {
+                "cljsLaunchBuilds": [":main"],
+                "cljsDefaultBuild": ":main"
+            }
+        },
+    ]
+}

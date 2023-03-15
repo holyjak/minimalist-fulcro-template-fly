@@ -35,6 +35,7 @@ docker run --rm -it -p 9999:8008 \
 3. Set the DB url env var (see the `config` ns) for the app using the value: `fly secrets set -a mft-fly DATABASE_URL="postgres://postgres:sxRhUb2HlJUjSuc@mft-fly-db.internal:5432"`
 4. Deploy: `fly deploy`
 5. Access your deployed app under its name, here: https://mft-fly.fly.dev/
+6. For Calva, the server is started automatically during jack-in
 
 # Original minimalist-fulcro-template instructions
 
