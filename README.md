@@ -29,8 +29,12 @@ docker run --rm -it -p 9999:8008 \
 
 #### Fly setup
 
-1. `fly apps create` and choose app name, e.g. _mft-fly_
+1. `fly launch --name mft-fly --no-deploy` - here we choose the app name _mft-fly_
 2. `fly postgres  create` and choose app name, e.g. _mft-fly-db_
+   This will print a connect string such as `postgres://postgres:sxRhUb2HlJUjSuc@mft-fly-db.internal:5432`
+3. Set the DB url env var (see the `config` ns) for the app using the value: `fly secrets set -a mft-fly DATABASE_URL="postgres://postgres:sxRhUb2HlJUjSuc@mft-fly-db.internal:5432"`
+4. Deploy: `fly deploy`
+5. Access your deployed app under its name, here: https://mft-fly.fly.dev/
 
 # Original minimalist-fulcro-template instructions
 
