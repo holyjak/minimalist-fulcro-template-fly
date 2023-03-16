@@ -13,7 +13,7 @@ FROM clojure:temurin-19-tools-deps-1.11.1.1208 AS builder
 
 WORKDIR /opt
 
-COPY . .
+COPY ./deps.edn .
 
 # Pre-download Frontend deps so they will be cached even if build fails and must be re-run
 RUN clojure -A:cljs -Spath
@@ -21,6 +21,7 @@ RUN clojure -A:cljs -Spath
 RUN clojure -Spath
 
 COPY --from=npm /opt/node_modules node_modules
+COPY . .
 #RUN env TIMBRE_LEVEL=:warn clojure -M:shadow-cljs release main
 RUN env TIMBRE_LEVEL=:info clojure -M:shadow-cljs release main
 
