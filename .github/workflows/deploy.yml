@@ -1,0 +1,25 @@
+## A manually activated GitHub action to deploy the app to Fly
+## Prerequisites:
+## 1. The DB and app have been launched, as described in the readme
+## 2. A GitHub Repository Secret named FLY_API_TOKEN has been created, containing the token
+##    (get it from `flyctl auth token`)
+name: Fly Deploy
+#on:
+#push:
+#branches:
+#  - main
+on:
+  workflow_dispatch:
+     # specify inputs: or whatever ...
+
+
+env:
+  FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+jobs:
+  deploy:
+    name: Deploy app
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl deploy --remote-only

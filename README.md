@@ -9,6 +9,7 @@ Key differences:
    also apply DB migrations from `resources/db-init.sql`
 3. Pathom resolvers can use `(:conn env)` with `next.jdbc/execute!` to run queries
 4. You must manually call `(start)` in the main ns to start the server
+5. There is a GitHub Action you can use to deploy the app on demand, see `.github/`
 
 ## Operation
 
